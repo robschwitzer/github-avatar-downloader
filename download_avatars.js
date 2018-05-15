@@ -19,7 +19,17 @@ var parsed = JSON.parse(body);
   });
 }
 
-
+function downloadImageByURL(url, filePath) {
+//get url
+  request.get(url)
+  .on('error', function(err) {
+    console.log('Error');
+  })
+  .on('response', function(response) {
+    console.log('Response Status Code: ', response.statusCode);
+  })
+  .pipe(fs.createWriteStream(filePath));
+}
 
 getRepoContributors('jquery', 'jquery', function(err, result) {
   console.log('Errors:', err);
@@ -30,3 +40,5 @@ function cb () {
   //loop over and print out the avatar_url for each object in the collection
 
 }
+
+downloadImageByURL("https://avatars2.githubusercontent.com/u/2741?v=3&s=466", "avatars/kvirani.jpg");
