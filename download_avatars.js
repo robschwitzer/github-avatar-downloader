@@ -1,11 +1,11 @@
-//step 1: load request module
+//load request module
 var request = require('request');
 var fs = require('fs');
 var secret = require('./secrets');
 var repoOwner = process.argv[2];
 var repoName = process.argv[3];
 
-//step 2: setup function with arguments
+//setup function with arguments
 function getRepoContributors (repoOwner, repoName, cb) {
   if (!repoName || !repoOwner) {
     console.log('Error: please enter a valid user and repo');
@@ -16,7 +16,6 @@ function getRepoContributors (repoOwner, repoName, cb) {
   headers: {
     'User-Agent': 'request',
     'Authorization': exports.secret
-    // 'token ' + process.env.GITHUB_TOKEN
   }
 };
 
@@ -46,8 +45,4 @@ getRepoContributors(repoOwner, repoName, function(err, result) {
   }
 });
 
-// function cb () {
-//   //loop over and print out the avatar_url for each object in the collection
-
-// }
 
